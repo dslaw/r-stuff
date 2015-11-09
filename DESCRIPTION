@@ -1,0 +1,11 @@
+Package: rroba
+Type: Package
+Title: Personal stuff
+Version: 0.1.0
+Authors@R: person("David", "Law", email = "davidsamuellaw@gmail.com", role = c("aut", "cre"))
+Author: David Law
+Maintainer: David law <davidsamuellaw@gmail.com>
+Description: Personal utility functions for interactive use.
+Depends: R (>= 3.2.2)
+License: MIT
+LazyData: true
