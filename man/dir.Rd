@@ -4,10 +4,10 @@
 \alias{dir}
 \title{Inspect global namespace or package namespace}
 \usage{
-dir(pkg)
+dir(package)
 }
 \arguments{
-\item{pkg}{package name to inspect}
+\item{package}{package name to inspect}
 }
 \value{
 vector of function and method names in the namespace

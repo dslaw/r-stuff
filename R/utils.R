@@ -176,14 +176,18 @@ pk <- function() {
 #'
 #' If called without an argument, return the names in the current scope.
 #' If called with a package name, return the names in the package scope.
-#' @param pkg package name to inspect
+#' @param package package name to inspect
 #' @return vector of function and method names in the namespace
 #' @export
-dir <- function(pkg) {
-    if (missing(pkg))
+dir <- function(package) {
+    if (missing(package)) {
         ls()
-    else
-        ls(paste0("package:", pkg))
+    } else if (!is.character(package)) {
+        package <- as.character(substitute(package))
+        ls(paste0("package:", package))
+    } else {
+        ls(paste0("package:", package))
+    }
 }
 
 #' Change factors to characters
@@ -203,5 +207,37 @@ unfactor <- function(x){
     id <- vapply(x, is.factor, logical(1))
     x[id] <- lapply(x[id], as.character)
     x
+}
+
+#' Rename object names
+#'
+#' Match and rename object names with new names.
+#' @param x object to rename
+#' @param old names to match on
+#' @param newn new names, matched to `old` by position
+#' @param value list with `old` and `new` containing the names to match on and
+#' names to be matched to, by position
+#' @examples
+#' x <- data.frame(foo = 1:3, bar = letters[1:3])
+#' names(x) <- rename(x, "bar", "baz")
+#' names(x)
+#' # [1] "foo" "baz"
+#' rename(x) <- list(old = "baz", new = "bar")
+#' names(x)
+#' # [1] "foo" "bar"
+#' @export
+rename <- function(x, old, newn) {
+    n <- names(x)
+    n[ match(old, n) ] <- newn
+    return(n)
+}
+
+#' @rdname rename
+#' @export
+"rename<-" <- function(x, value) {
+    old <- value$old
+    newn <- value$new
+    names(x) <- rename(x, old, newn)
+    return(x)
 }
 
