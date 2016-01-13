@@ -181,11 +181,9 @@ pk <- function() {
 #' @export
 dir <- function(package) {
     if (missing(package)) {
-        ls()
-    } else if (!is.character(package)) {
-        package <- as.character(substitute(package))
-        ls(paste0("package:", package))
+        ls(envir = .GlobalEnv)
     } else {
+        package <- as.character(substitute(package))
         ls(paste0("package:", package))
     }
 }
