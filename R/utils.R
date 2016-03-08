@@ -106,8 +106,14 @@ rm_na_rows <- function(x) {
 #' @param x value
 #' @return logical
 #' @export
-not <- function(x) {
+not <- function(x) UseMethod('not')
+
+not.default <- function(x) {
     !length(x)
+}
+
+not.data.frame <- function(x) {
+    !nrow(x)
 }
 
 #' Check if `x` is null, NA or NaN
