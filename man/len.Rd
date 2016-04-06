@@ -7,13 +7,12 @@
 len(x)
 }
 \arguments{
-\item{x}{vector}
+\item{x}{object}
 }
 \value{
-integer indicating the number of characters in x if x is a
-single-element character vector, otherwise the number of elements in x
+integer number of elements in x
 }
 \description{
-Length of `x` if `x` is a vector, number of characters if `x` is a string
+Get the number of elements in an R object
 }
 

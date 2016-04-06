@@ -141,27 +141,40 @@ named <- function(x) {
 
 #' Length
 #'
-#' Length of `x` if `x` is a vector, number of characters if `x` is a string
-#' @param x vector
-#' @return integer indicating the number of characters in x if x is a
-#' single-element character vector, otherwise the number of elements in x
+#' Get the number of elements in an R object
+#' @param x object
+#' @return integer number of elements in x
 #' @export
-len <- function(x) {
-    if (is.character(x) && length(x) == 1)
+len <- function(x) UseMethod('len')
+
+len.default <- function(x) {
+    length(x)
+}
+
+len.character <- function(x) {
+    if (length(x) == 1L)
         nchar(x)
     else
         length(x)
 }
 
-#' Last `n` elements in `x`
+len.data.frame <- function(x) {
+    nrow(x)
+}
+
+len.matrix <- function(x) {
+    nrow(x)
+}
+
+#' Last element
 #'
-#' Last `n` elements in `x`
-#' @param x list or vector
-#' @param n number of elements to take from the end
-#' @return last n elements in x
+#' Take the last element in `x`
+#' @param x object
+#' @param ... additional arguments to be passed to tail
+#' @return last element in x
 #' @export
-last <- function(x, n = 1L) {
-    tail(x, n)
+last <- function(x, ...) {
+    tail(x, 1L, ...)
 }
 
 #' Plot kill
@@ -233,7 +246,7 @@ unfactor <- function(x){
 rename <- function(x, old, newn) {
     n <- names(x)
     n[ match(old, n) ] <- newn
-    return(n)
+    n
 }
 
 #' @rdname rename
@@ -242,6 +255,6 @@ rename <- function(x, old, newn) {
     old <- value$old
     newn <- value$new
     names(x) <- rename(x, old, newn)
-    return(x)
+    x
 }
 

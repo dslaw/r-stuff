@@ -2,19 +2,19 @@
 % Please edit documentation in R/utils.R
 \name{last}
 \alias{last}
-\title{Last `n` elements in `x`}
+\title{Last element}
 \usage{
-last(x, n = 1L)
+last(x, ...)
 }
 \arguments{
-\item{x}{list or vector}
+\item{x}{object}
 
-\item{n}{number of elements to take from the end}
+\item{...}{additional arguments to be passed to tail}
 }
 \value{
-last n elements in x
+last element in x
 }
 \description{
-Last `n` elements in `x`
+Take the last element in `x`
 }
 

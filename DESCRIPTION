@@ -1,7 +1,7 @@
 Package: rroba
 Type: Package
 Title: Personal stuff
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person("David", "Law", email = "davidsamuellaw@gmail.com", role = c("aut", "cre"))
 Author: David Law
 Maintainer: David law <davidsamuellaw@gmail.com>
